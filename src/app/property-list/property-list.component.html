@@ -1,0 +1,26 @@
+<div class="container" style="padding-top:5%">
+    <div class="row">
+        <div class="col-sm-4 col-md-4" *ngFor="let property of propertyList">
+            <div class="post">
+                <div class="post-img-content">
+                    <img src="assets/images/property1.jpg" class="img-responsive w-100" />
+                    <span class="post-title"><b>{{property.title}}</b><br />
+                        <b>{{property.type}}</b></span>
+                </div>
+                <div class="content">
+                    <div class="author">
+                        By <b>shekhar</b> |
+                        <time datetime="2014-01-20">August 8th, 2012</time>
+                    </div>
+                    <div>
+                        {{property.description}}  
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-warning btn-sm">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

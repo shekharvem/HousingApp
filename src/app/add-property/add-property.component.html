@@ -1,0 +1,28 @@
+<div class="container mar-top200">
+    <input type="button" value="Back" class="btn btn-primary" (click)="goback()">
+    <form (ngSubmit)="submit(form)" #form="ngForm">
+    <div class="card">
+        <div class="card-header"> Add Property</div>
+        <div class="card-body">
+            <div class="form-group col-md-12">
+                <label for="name">Name *</label>
+                <input type="text" class="form-control" #title="ngModel" ngModel name="title" required>
+            </div>
+            <span class="error-block" *ngIf="title.invalid && title.touched">This field required</span>
+            <div class="form-group col-md-12">
+                <label for="name">Type</label>
+                <input type="text" class="form-control" ngModel name="type">
+            </div>
+            <div class="form-group col-md-12">
+                <label for="name">Price</label>
+                <input type="text" class="form-control" ngModel name="price">
+            </div>
+            
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" [disabled]="!form.valid">Submit</button>
+            <button class="btn ">Cancel</button>
+        </div>
+    </div>
+</form>
+</div>

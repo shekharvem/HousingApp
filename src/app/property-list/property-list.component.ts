@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { IProperty } from '../interface/property.interface';
+import { PropertyListService } from '../services/property.service';
 
 @Component({
   selector: 'app-property-list',
@@ -7,32 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyListComponent implements OnInit {
 
-  constructor() { }
-  propertyList: any;
+  constructor(private propertySvc: PropertyListService, private activatedRoute: ActivatedRoute) { }
+  public propertyList: Array<IProperty> = [];
+  public sellRent = '1';
 
   ngOnInit(): void {
-
-    this.propertyList  =  [{
-      "id": 1,
-      "title": "2bhk House in Hyderabad",
-      "type": "House",
-      "price": 150000,
-      "description" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the"
-      },
-      {
-        "id": 2,
-        "title": "3bhk House in Hyderabad",
-        "type": "Villa",
-        "price": 150000,
-        "description" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the"
-        },
-        {
-          "id": 2,
-          "title": "3bhk House in Hyderabad",
-          "type": "House",
-          "price": 150000,
-          "description" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the"
-          }]
+    if(this.activatedRoute.snapshot.url.toString()) {
+      this.sellRent = this.activatedRoute.snapshot.url.toString();
+    }
+   
+    this.propertySvc.getPropertiesList(this.sellRent).subscribe((res: any) => {
+      this.propertyList = res;
+      console.log(this.activatedRoute.snapshot.url.toString()) 
+    });
   }
 
 }

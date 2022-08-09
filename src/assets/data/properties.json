@@ -1,0 +1,55 @@
+[
+    {
+        "id": 1,
+        "SellRent": 1,
+        "title": "2bhk House in Hyderabad",
+        "type": "House",
+        "price": 150000,
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+        "img": "property1.jpg"
+    },
+    {
+        "id": 2,
+        "SellRent": 1,
+        "title": "3bhk House in Hyderabad",
+        "type": "Villa",
+        "price": 150000,
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+        "img": "property2.jpg"
+    },
+    {
+        "id": 3,
+        "SellRent": 2,
+        "title": "3bhk House in Hyderabad",
+        "type": "House",
+        "price": 150000,
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+        "img": "property3.jpg"
+    },
+    {
+        "id": 4,
+        "SellRent": 1,
+        "title": "3bhk House in Hyderabad",
+        "type": "House",
+        "price": 150000,
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+        "img": "property4.jpg"
+    },
+    {
+        "id": 5,
+        "SellRent": 2,
+        "title": "3bhk House in Hyderabad",
+        "type": "House",
+        "price": 150000,
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the",
+        "img": "property5.jpg"
+    },
+    {
+        "id": 2,
+        "SellRent": 1,
+        "title": "3bhk House in Hyderabad",
+        "type": "House",
+        "price": 150000,
+        "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the"
+    }
+]

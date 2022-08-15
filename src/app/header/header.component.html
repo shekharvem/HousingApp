@@ -1,38 +1,44 @@
 <nav class="navbar navbar-expand-lg fixed-top shadow navbar-light bg-white">
     <div class="container-fluid">
-        <div class="d-flex align-items-center"><a class="navbar-brand py-1" href="index.html"> Housing </a>
-            <form class="form-inline d-none d-sm-flex" action="#" id="search">
-                <div class="input-label-absolute input-label-absolute-left input-expand ms-lg-2 ms-xl-3">
-                    <label class="label-absolute" for="search_search"><i class="fa fa-search"></i><span
-                            class="sr-only">What are you looking for?</span></label>
-                    <input class="form-control form-control-sm border-1 shadow-0 bg-gray-200" id="search_search"
-                        placeholder="Search" aria-label="Search" type="search">
-                </div>
-            </form>
-        </div>
+        <div class="d-flex align-items-center"><a class="navbar-brand py-1 color-primary" href="index.html"> EASY <strong>HOUSING</strong> </a>  </div>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
             aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
         <!-- Navbar Collapse -->
         <div class="collapse navbar-collapse" id="navbarCollapse">
-            <form class="form-inline mt-4 mb-2 d-sm-none" action="#" id="searchcollapsed">
-                <div class="input-label-absolute input-label-absolute-left w-100">
-                    <label class="label-absolute" for="searchcollapsed_search"><i class="fa fa-search"></i><span
-                            class="sr-only">What are you looking for?</span></label>
-                    <input class="form-control form-control-sm border-0 shadow-0 bg-gray-200"
-                        id="searchcollapsed_search" placeholder="Search" aria-label="Search" type="search">
-                </div>
-            </form>
-            <ul class="navbar-nav ms-auto">
+         
+            <ul class="navbar-nav float-left">
                 <li class="nav-item"><a class="nav-link" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" routerLink="/">Home</a></li>
                 <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/buy-property">Buy</a> </li>
                 <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/rent-property">Rent</a> </li>
-                <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/add-property">Property List</a></li>
-                <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/login">Sign in</a></li>
-                <li class="nav-item"><a class="nav-link" routerLinkActive="active" routerLink="/register">Sign up</a></li>
-                <li class="nav-item mt-3 mt-lg-0 ms-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary"
-                        href="#">Add a listing</a></li>
             </ul>
+            <ul class="navbar-nav ms-auto float-right">
+             
+             
+              <li class="nav-item"><a class="nav-link" *ngIf="!isLogged()" routerLinkActive="active" routerLink="/login">Sign in</a></li>
+              <li class="nav-item"><a class="nav-link" *ngIf="!isLogged()" routerLinkActive="active" routerLink="/register">Sign up</a></li>
+              <li class="nav-item" *ngIf="isLogged()">
+                  <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                      <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            {{loggedInUser}}
+                          </a>
+                          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li class="nav-item"><a class="nav-link"  (click)="logOut()">LogOut</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </div>
+              </li>
+              <li class="nav-item mt-3 mt-lg-0 ms-lg-3 d-lg-none d-xl-inline-block"><a class="btn btn-primary"
+                routerLink="/add-property">Add a listing</a></li>
+          </ul>
         </div>
     </div>
 </nav>
+
+<div id="liveAlertPlaceholder"></div>

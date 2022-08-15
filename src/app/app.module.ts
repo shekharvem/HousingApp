@@ -16,17 +16,16 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
+import { UserService } from './services/user.service';
+import { AlertService } from './services/alert.service';
+import { AuthService } from './services/auth.service';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { SearchComponent } from './search/search.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PropertyDetailResolver } from './resolvers/propertydetail.resolver';
 
-const appRoute: Routes = [
-  { path: '', component: PropertyListComponent },
-  { path: 'rent-property', component: PropertyListComponent },
-  { path: 'buy-property', component: PropertyListComponent },
-  { path: 'add-property', component: AddPropertyComponent},
-  { path: 'property-detail/:id', component: PropertyDetailComponent},
-  { path: 'login', component: LoginComponent},
-  { path: 'register', component: RegisterComponent},
-  { path: '**', component: PageNotFoundComponent}
-]
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +37,8 @@ const appRoute: Routes = [
     PropertyDetailComponent,
     PageNotFoundComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +46,12 @@ const appRoute: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoute)
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
   ],
-  providers: [PropertyListService],
+  providers: [PropertyListService, UserService, AlertService, AuthService, PropertyDetailResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

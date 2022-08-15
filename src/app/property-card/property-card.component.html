@@ -1,20 +1,22 @@
 <div class="post">
     <div class="post-img-content">
-        <img *ngIf="property.img" src="assets/images/{{property.img}}" class="img-responsive w-100" />
-        <img *ngIf="!property.img" src="assets/images/default-image.jpg" class="img-responsive w-100" />
-        <span class="post-title"><b>{{property.title}}</b><br />
-            <b>{{property.type}}</b></span>
+        <img *ngIf="property.Image" src="assets/images/{{property.Image}}" class="img-responsive w-100" />
+        <img *ngIf="!property.Image" src="assets/images/default-image.jpg" class="img-responsive w-100" />
+        <span class="post-title"><b>{{property.Name}}</b><br />
+            <b>{{property.PType}}</b></span>
     </div>
     <div class="content">
         <div class="author">
             By <b>shekhar</b> |
             <time datetime="2014-01-20">August 8th, 2012</time>
         </div>
-        <p>
-            {{property.description}}  
-        </p>
+        <p class="p-title"><strong>{{property.Name}} </strong>
+            <span>for {{property.SellRent}} in {{property.City}} </span></p>
+            
+            Price: Rs.<strong class="d-inline-block mr-10">{{property.Price}}</strong>  
+            Build Area: <strong>{{property.BuiltArea}} sft</strong>
         <div>
-            <a routerLink="/property-detail/{{property.id}}" class="btn btn-warning btn-sm">Read more</a>
+            <a routerLink="/property-detail/{{property.Id}}" class="btn btn-warning mt-2 btn-sm">Read more</a>
         </div>
     </div>
 </div>

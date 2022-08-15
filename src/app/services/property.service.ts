@@ -1,26 +1,57 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
-import { IProperty } from "../interface/property.interface";
+import { map, Observable, throwError } from "rxjs";
+import { IpropertyBase } from "../models/IpropertyBase.model";
+import { Property } from "../models/property";
 
 @Injectable()
 export class PropertyListService {
     constructor(public _http: HttpClient) { }
 
-    getPropertiesList(sellRent: string): Observable<IProperty[]> {
-        return this._http.get<IProperty[]>('assets/data/properties.json').pipe(
+    getProperty(propertyId: number): Observable<any> {
+       return this.getPropertiesList().pipe(
+        map(data => {
+               // throw new Error('test error');
+           return data.find(x=> x.Id == propertyId)
+        })
+       )
+    }
+
+    getPropertiesList(sellRent?: string): Observable<Property[]> {
+        return this._http.get<Property[]>('assets/data/properties.json').pipe(
             map(data => {
                 const propertiesArray = [];
-                for (let id in data) {
-                    if (sellRent === 'rent-property' && data[id].SellRent == 2) {
-                        propertiesArray.push(data[id])
+                const localStoreProperies = JSON.parse(localStorage.getItem('newProperty')!);
+                for (let Id in localStoreProperies) {
+                    if (localStoreProperies[Id].SellRent == 'buy') {
+                        propertiesArray.push(localStoreProperies[Id])
                     }
-                    if (data[id].SellRent == 1) {
-                        propertiesArray.push(data[id])
+                }
+
+                for (let Id in data) {
+                    if (sellRent === 'rent-property' && data[Id].SellRent == 'rent') {
+                        propertiesArray.push(data[Id])
+                    }
+                    if (data[Id].SellRent == 'buy') {
+                        propertiesArray.push(data[Id])
+                    }
+                }
+                if (!sellRent) {
+                    for (let Id in data) {
+                        propertiesArray.push(data[Id])
                     }
                 }
                 return propertiesArray
             })
         )
+    }
+
+    addProperty(property: Property) {
+        let newPropery = [property];
+        if (localStorage.getItem('newProperty')) {
+            let getLSProps = JSON.parse(localStorage.getItem('newProperty')!);
+            newPropery = [newPropery, ...getLSProps]
+        }
+        localStorage.setItem('newProperty', JSON.stringify(newPropery));
     }
 }

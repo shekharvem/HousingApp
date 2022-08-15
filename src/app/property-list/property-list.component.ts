@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IProperty } from '../interface/property.interface';
+import { IpropertyBase } from '../models/IpropertyBase.model';
 import { PropertyListService } from '../services/property.service';
 
 @Component({
@@ -11,14 +11,14 @@ import { PropertyListService } from '../services/property.service';
 export class PropertyListComponent implements OnInit {
 
   constructor(private propertySvc: PropertyListService, private activatedRoute: ActivatedRoute) { }
-  public propertyList: Array<IProperty> = [];
+  public propertyList: Array<IpropertyBase> = [];
   public sellRent = '1';
 
   ngOnInit(): void {
     if(this.activatedRoute.snapshot.url.toString()) {
       this.sellRent = this.activatedRoute.snapshot.url.toString();
     }
-   
+
     this.propertySvc.getPropertiesList(this.sellRent).subscribe((res: any) => {
       this.propertyList = res;
       console.log(this.activatedRoute.snapshot.url.toString()) 

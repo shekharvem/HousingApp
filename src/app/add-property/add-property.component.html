@@ -11,7 +11,7 @@
                         <tab heading="Basic Info" formGroupName="BasicInfo">
 
                             <div class="form-group col-12 ">
-                                <span class="d-block mt-2">I want To</span>
+                                <span class="d-block mt-2">I want To<sup class="mandat-field">*</sup></span>
                                 <div class="btn-group">
                                     <label class="btn btn-outline-primary" btnRadio="buy"
                                         tabindex="0" name="Cstype" value="buy" role="button" formControlName="SellOrRent">Buy</label>
@@ -23,7 +23,7 @@
                             </div>
 
                             <div class="form-group col-12">
-                                <span class="d-block mt-2">BHK</span>
+                                <span class="d-block mt-2">BHK<sup class="mandat-field">*</sup></span>
                                 <div class="btn-group">
                                     <label *ngFor="let bhk of ['1','2','3','4']" class="btn btn-outline-primary"
                                         [btnRadio]="bhk" name="bhk" tabindex="0" role="button" formControlName="BHK">{{bhk}}</label>
@@ -32,7 +32,7 @@
                             </div>
 
                             <div class="form-group col-12">
-                                <span class="d-block mt-2">Propery Type</span>
+                                <span class="d-block mt-2">Propery Type<sup class="mandat-field">*</sup></span>
                                 <div class="btn-group" name="p-type" >
                                     <label *ngFor="let property of propertyType" class="btn btn-outline-primary"
                                         [btnRadio]="property"  name="PType" tabindex="0" [(ngModel)]="propertyView.PType"  
@@ -55,7 +55,7 @@
 
 
                             <div class="form-group col-md-12">
-                                <label for="name">In Building/Society/Project *</label>
+                                <label for="name">In Building/Society/Project<sup class="mandat-field">*</sup></label>
                                 <input type="text" class="form-control" [(ngModel)]="propertyView.Name" 
                                 ngModelOptions="{standalone: true}" name="name" formControlName="Name">
                             </div>
@@ -67,8 +67,9 @@
                             </div>
                            
                           
-                            <div class="btn-group" role="group" aria-label="Basic example">
-                                <button type="button"  class="btn btn-primary my-2" (click)="selectTab(1, BasicInfo.valid)">Next</button>
+                            <div class="btn-group mt-4" role="group" aria-label="Basic example">
+                                <button type="button"  class="btn btn-primary my-2" [disabled]="BasicInfo.invalid"
+                                 (click)="selectTab(1, BasicInfo.valid)">Next</button>
                             </div>
 
 
@@ -76,7 +77,7 @@
 
                         <tab heading="Pricing and Area" formGroupName="PriceDetails">
                             <div class="form-group col-12">
-                                <label>Price (in Rs)</label>
+                                <label>Price (in Rs) <sup class="mandat-field">*</sup></label>
                                 <input type="text" class="form-control" name="price" formControlName="Price">
                                 <span *ngIf="Price.invalid && nextClicked" class="error-block"> This Field is required </span>
                             </div>
@@ -101,11 +102,11 @@
                                 <input type="text" class="form-control" formControlName="CarpetArea">
                             </div>
 
-                            <div class="form-group col-12">
-                                <button type="button" class="btn btn-primary btn-block"
+                            <div class="form-group col-12 mt-4">
+                                <button type="button" class="btn btn-primary btn-block me-2"
                                     (click)="selectTab(2, PriceDetails.valid)">Next</button>
 
-                                <button type="button" class="btn btn-primary btn-block"
+                                <button type="button" class="btn btn-secondary btn-block"
                                     (click)="selectTab(0)">Back</button>
                             </div>
                         </tab>
@@ -121,7 +122,7 @@
                             </div>
 
                             <div class="form-group col-12">
-                                <label>Address</label>
+                                <label>Address <sup class="mandat-field">*</sup></label>
                                 <input type="text" class="form-control" formControlName="Address">
                             </div>
 
@@ -130,11 +131,11 @@
                                 <input type="text" class="form-control" formControlName="LandMark" >
                             </div>
 
-                            <div class="form-group col-12">
-                                <button type="button" class="btn btn-primary btn-block"
+                            <div class="form-group col-12 mt-4">
+                                <button type="button" class="btn btn-primary btn-block me-2"
                                     (click)="selectTab(3, AdditionalInfo.valid)" >Next</button>
 
-                                <button type="button" class="btn btn-primary btn-block"
+                                <button type="button" class="btn btn-secondary btn-block"
                                     (click)="selectTab(1)">Back</button>
                             </div>
                         </tab>
@@ -179,23 +180,23 @@
                                 <textarea type="text" class="form-control" formControlName="Description" rows="6"></textarea>
                             </div>
 
-                            <div class="form-group col-12">
-                                <button type="button" class="btn btn-primary btn-block"
+                            <div class="form-group col-12 mt-4">
+                                <button type="button" class="btn btn-primary btn-block me-2"
                                     (click)="selectTab(4, OtherInfo.valid)">Next</button>
 
-                                <button type="button" class="btn btn-primary btn-block"
+                                <button type="button" class="btn btn-secondary btn-block"
                                     (click)="selectTab(2)">Back</button>
                             </div>
                         </tab>
                         <tab heading="Photos">
                             <div class="form-group col-12">
                                 <div class="photo-control">
-                                    <button class="mt-5" type="button">Upload</button> <br>
-                                    This is under construction
+                                    <button class="mt-5 btn btn-secondary" disabled type="button">Upload</button> 
+                                   
                                 </div>
                             </div>
-                            <div class="form-group col-12">
-                                <button type="button" class="btn btn-primary btn-block"
+                            <div class="form-group col-12 mt-4">
+                                <button type="button" class="btn btn-secondary btn-block me-2"
                                     (click)="selectTab(3)">Back</button>
                                     <button type="button" class="btn btn-primary btn-block"
                                     (click)="submit()">Submit</button>

@@ -21,7 +21,7 @@ export class AddPropertyComponent implements OnInit {
   furnishType = ['Fully', 'Semi', 'unFurnished'];
   addPropertyForm: FormGroup;
   nextClicked: boolean = false;
-  property: Property =  new Property();
+  property: Property = new Property();
 
   propertyView: IpropertyBase = {
     Id: 0,
@@ -67,11 +67,11 @@ export class AddPropertyComponent implements OnInit {
         LandMark: [null]
       }),
       OtherInfo: this.fb.group({
-        RTM: [null, Validators.required],
+        RTM: [null],
         PosessionOn: [null],
         AOP: [null],
         Gated: [null],
-        Maintanance:[null],
+        Maintanance: [null],
         Description: [null]
       })
     })
@@ -92,48 +92,52 @@ export class AddPropertyComponent implements OnInit {
 
   submit() {
     this.nextClicked = true;
-    if(this.allTabsValid()){
+    if (this.allTabsValid()) {
       this.mapProperty();
-      this.propertyListSvc.addProperty(this.property);
-      this.alertSvc.success('Congrats! You have successfully added your property');
-      if( this.property.SellRent == 'buy') {
-        this.router.navigate(['/buy-property'])
-      } else {
-        this.router.navigate(['/rent-property'])
-      }
-      
+      this.propertyListSvc.addProperty(this.property).subscribe(res => {
+        if (res) {
+          this.alertSvc.success('Congrats! You have successfully added your property');
+          if (this.property.SellRent == 'buy') {
+            this.router.navigate(['/buy-property'])
+          } else {
+            this.router.navigate(['/rent-property'])
+          }
+        }
+      });
+
+
     }
 
 
   }
 
-  mapProperty(){
-    this.property.Id = Math.round(Math.random()*1000),
-    this.property.SellRent =  this.BasicInfo.get('SellOrRent')?.value,
-    this.property.Name = this.BasicInfo.get('Name')?.value,
-    this.property.propertyTypeId = 0,
-    this.property.PType =  this.BasicInfo.get('PType')?.value;;
+  mapProperty() {
+    this.property.Id = Math.round(Math.random() * 1000),
+      this.property.SellRent = this.BasicInfo.get('SellOrRent')?.value,
+      this.property.Name = this.BasicInfo.get('Name')?.value,
+      this.property.propertyTypeId = 0,
+      this.property.PType = this.BasicInfo.get('PType')?.value;;
     this.property.BHK = this.BasicInfo.get('BHK')?.value;
     this.property.furnishingTypeId = this.BasicInfo.get('BHK')?.value;;
     this.property.FType = this.BasicInfo.get('FType')?.value,
-    this.property.Price = this.PriceDetails.get('Price')?.value,
-    this.property.BuiltArea = this.PriceDetails.get('BuiltArea')?.value,
-    this.property.carpetArea = this.PriceDetails.get('CarpetArea')?.value,
-    this.property.address =  this.AdditionalInfo.get('Address')?.value,
-    this.property.address2 = this.AdditionalInfo.get('LandMark')?.value,
-    this.property.CityId= 0,
-    this.property.City = this.PriceDetails.get('City')?.value;
+      this.property.Price = this.PriceDetails.get('Price')?.value,
+      this.property.BuiltArea = this.PriceDetails.get('BuiltArea')?.value,
+      this.property.carpetArea = this.PriceDetails.get('CarpetArea')?.value,
+      this.property.address = this.AdditionalInfo.get('Address')?.value,
+      this.property.address2 = this.AdditionalInfo.get('LandMark')?.value,
+      this.property.CityId = 0,
+      this.property.City = this.PriceDetails.get('City')?.value;
     this.property.floorNo = this.AdditionalInfo.get('FloorNo')?.value;
-    this.property.totalFloors= this.AdditionalInfo.get('TotalFoor')?.value;
+    this.property.totalFloors = this.AdditionalInfo.get('TotalFoor')?.value;
     this.property.RTM = this.OtherInfo.get('RTM')?.value,
-    this.property.age = this.OtherInfo.get('AOP')?.value,
-    this.property.mainEntrance =  "",
-    this.property.security = 0,
-    this.property.gated = this.OtherInfo.get('Gated')?.value,
-    this.property.maintenance = this.OtherInfo.get('Maintanance')?.value,
-    this.property.estPossessionOn = this.OtherInfo.get('PosessionOn')?.value.toString(),
-    this.property.photo = '',
-    this.property.Description = this.OtherInfo.get('Description')?.value
+      this.property.age = this.OtherInfo.get('AOP')?.value,
+      this.property.mainEntrance = "",
+      this.property.security = 0,
+      this.property.gated = this.OtherInfo.get('Gated')?.value,
+      this.property.maintenance = this.OtherInfo.get('Maintanance')?.value,
+      this.property.estPossessionOn = this.OtherInfo.get('PosessionOn')?.value.toString(),
+      this.property.photo = '',
+      this.property.Description = this.OtherInfo.get('Description')?.value
   }
 
   //getters form controls
@@ -162,7 +166,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
 
-  allTabsValid(){
+  allTabsValid() {
     if (this.BasicInfo.invalid && this.formTabs?.tabs[0]) {
       this.formTabs.tabs[0].active = true;
       return false

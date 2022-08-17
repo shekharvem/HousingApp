@@ -11,8 +11,9 @@ export class AlertService {
     }
 
     error(msg: string) {
-        this.alert(msg, 'error');
+        this.alert(msg, 'danger');
     }
+
 
     alert(message?: string, type?: any) {
         const alertPlaceholder = document.getElementById('liveAlertPlaceholder') as HTMLElement;

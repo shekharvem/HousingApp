@@ -48,15 +48,12 @@
                 </span>
               </div>
       
-              <div class="form-group col-12">
-                <button type="submit" [disabled]="false" class="btn btn-primary">Save</button>
+              <div class="form-group col-12 mt-3">
+                <button type="submit" [disabled]="false" class="btn btn-primary me-2">Save</button>
                 <button type="reset" class="btn btn-secondary ml-2">Cancel</button>
               </div>
             </form>
 
-            {{registerForm.value | json}}
-           status: {{registerForm.status | json}}
-            <!-- {{registerForm.valid | json}} -->
           </div>
         </div>
         </div>

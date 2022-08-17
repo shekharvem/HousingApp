@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../models/user.model';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -8,19 +10,19 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   loggedInUser: any;
-  constructor(private router: Router) { }
+  user: User;
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.user.subscribe( res => {
+      this.loggedInUser = !!res;
+      this.user = res;
+    });
   }
 
-  isLogged(){
-    this.loggedInUser = localStorage.getItem('token');
-    return this.loggedInUser;
-  }
 
   logOut(){
-    return localStorage.removeItem('token');
-
+    this.authService.logOut();
   }
 
 }

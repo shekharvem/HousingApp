@@ -6,10 +6,16 @@
 }
 .header-text {
     text-shadow: 2px 2px 5px #000;
+    top: 25%;
+    width:70%;
+    left:15%;
+    right:15%;
+    z-index: 999;
+    position: absolute;
+
     h4 {
         color: #cdc8ef;
     }
-
     h1 {
         color: #fff;
         font-size: 55px;
@@ -54,12 +60,6 @@
         background:#5a47d9;
 
     }
-}
-
-.header-text {
-    top: 25%;
-    z-index: 999;
-    position: absolute;
 }
 
 .home-page {

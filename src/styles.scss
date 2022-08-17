@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+    height: 100%;
+    box-sizing: border-box;
+  }
 .mar-top100 {
     margin-top: 100px;
 }
@@ -20,10 +24,12 @@ body, .navbar  {
 .pink-btn {
     background-color: #FF385C;
 }
-.btn-primary {
-    background-color:#5a47d9  !important;
-    border:#7221cf;
+.btn {
     border-radius: 2px;
+    
+}
+.btn-primary {
+    background-color:#5a47d9  !important;   
 }
 
 label {
@@ -32,4 +38,7 @@ label {
 }
 .mr-10 {
     margin-right:10px;
+}
+.nav-link {
+    color:#333
 }

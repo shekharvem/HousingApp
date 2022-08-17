@@ -12,7 +12,7 @@ export class PropertyListComponent implements OnInit {
 
   constructor(private propertySvc: PropertyListService, private activatedRoute: ActivatedRoute) { }
   public propertyList: Array<IpropertyBase> = [];
-  public sellRent = '1';
+  public sellRent = 'buy-property';
 
   ngOnInit(): void {
     if(this.activatedRoute.snapshot.url.toString()) {

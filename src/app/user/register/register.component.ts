@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { of } from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,9 +13,12 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
-  user: User;
+  user: any;
   userSubmitted: boolean = false;
-  constructor(private fb: FormBuilder, private userService: UserService, private alertService: AlertService) { }
+  constructor(private fb: FormBuilder,
+    private userService: UserService,
+    private alertService: AlertService,
+    private authService: AuthService) { }
 
 
   ngOnInit(): void {
@@ -42,23 +46,25 @@ export class RegisterComponent implements OnInit {
     return fc.get('password')?.value === fc.get('confirmPassword')?.value ? null : { notmatched: true }
   }
   submit() {
- 
     this.userSubmitted = true;
     if (this.registerForm.valid) {
-      //this.user = Object.assign(this.user, this.registerForm.value);
-      this.userService.addUser(this.userData());
+      //this.userService.addUser(this.userData());
+      this.authService.registerUser(this.userData()).subscribe({
+        next: (response) => { console.log(response) },
+        error: (error) => { console.log(error) },
+      });
       this.registerForm.reset();
       this.userSubmitted = false;
       this.alertService.success('Registered Successfully!');
     }
   }
 
-  userData(): User {
+  userData() {
     return this.user = {
-      name: this.name.value,
+      // name: this.name.value,
       email: this.email.value,
       password: this.password.value,
-      mobile: this.mobile.value,
+      // mobile: this.mobile.value,
     }
   }
 
